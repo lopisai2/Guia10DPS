@@ -5,7 +5,9 @@ import Auth from './src/components/Auth';
 import firebase from './src/utils/firebase';
 import 'firebase/auth';
 import ListBirthday from './src/components/ListBirthday';
-
+/*Librerias utilizadas
+firebase@4.12.0 moment react-native-base64 react-native-modal-datetime-picker @react-native-community/datetimepicker
+*/
 function btoa(data)
 {
   return new base64(data,"binary").toString("base64");

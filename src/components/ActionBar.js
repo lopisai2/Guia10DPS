@@ -5,6 +5,7 @@ import firebase from '../utils/firebase';
 export default function ActionBar(props)
 {
     const {showList,setShowList}=props;
+    
     return (
         <View style={styles.viewFooter}>
             <View style={styles.viewClose}>
