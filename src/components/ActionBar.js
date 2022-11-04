@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
     },
     viewClose:{
         backgroundColor:'#820000',
-        borderRadius:'50',
+        borderRadius:50,
         paddingHorizontal:30,
         paddingVertical:10,
     },
     viewAdd:{
         backgroundColor:'#1ea1f2',
-        borderRadius:'50',
+        borderRadius:50,
         paddingHorizontal:30,
         paddingVertical:10,
     },

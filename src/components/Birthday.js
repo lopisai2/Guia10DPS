@@ -25,7 +25,7 @@ export default function Birthday(props)
 
     return(
         <TouchableOpacity
-            styles={[
+            style={[
                 styles.card,
                 pasat ? styles.pasat : 
                 birthday.days===0 ? styles.actual:

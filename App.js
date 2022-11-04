@@ -36,7 +36,7 @@ export default function App()
 
   return(
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       <SafeAreaView style={styles.background}>
         {user?<ListBirthday user={user}/>:<Auth/>}
       </SafeAreaView>        

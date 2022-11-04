@@ -5,7 +5,7 @@ import moment from 'moment';
 import firebase from "../utils/firebase";
 import 'firebase/firestore';
 
-firebase.firestore().settings({experimentalForceLongPolling: true});
+firebase.firestore().settings({});
 const db=firebase.firestore(firebase);
 
 export default function AddBirthday(props)
@@ -19,13 +19,23 @@ export default function AddBirthday(props)
         setIsDatePickerVisible(false);
     };
 
+    const showDatePicker=()=>{
+        setIsDatePickerVisible(true);
+    };
+
     const handlerConfrim=(date)=>{
         const dateBirth=date;
+        const newdata=(moment(dateBirth).format('YYYY-MM-DD'));
         dateBirth.setHours(0);
         dateBirth.setMinutes(0);
-        dateBirth.setSeconds(0);
+        dateBirth.setSeconds(0);     
+        console.log(newdata);
+        console.log(dateBirth);
         setFormData({...formData,dateBirth});
         hideDatePicker();
+    }
+    const onChange=(e,type)=>{
+        setFormData({...formData,[type]:e.nativeEvent.text});
     }
 
     const onSubmit=()=>{
@@ -46,7 +56,8 @@ export default function AddBirthday(props)
             }            
         }else
         {
-            const data=formData;
+            const data=formData;       
+            console.log(formData);
             db.collection(user.uid)
             .add(data)
             .then(()=>{
@@ -82,7 +93,7 @@ export default function AddBirthday(props)
                         style={{color:formData.dateBirth ?'#fff':'#969696',fontSize:18,}}
                         onPress={showDatePicker}
                     >
-                        {formData.dateBirth ?moment(formData.dateBirth).format('LL'):'Fecha de Nacimiento'}
+                        {formData.dateBirth ?moment(formData.dateBirth).format('YYYY-MM-DD'):'Fecha de Nacimiento'}
                     </Text>
                 </View>
                 <TouchableOpacity onPress={onSubmit}>

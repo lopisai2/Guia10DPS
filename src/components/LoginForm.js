@@ -46,13 +46,13 @@ export default function LoginForm(props)
     return (
         <>
             <TextInput
-                style={[styles.textInput,formError.email&&styles.error]}
+                style={[styles.input,formError.email&&styles.error]}
                 placeholder="Correo Electronico"
                 placeholderTextColor={"#969696"}
                 onChange={(e)=>onChange(e,'email')}
              />
             <TextInput
-                style={[styles.textInput,formError.password&&styles.error]}
+                style={[styles.input,formError.password&&styles.error]}
                 placeholder="Contraseña"
                 placeholderTextColor={"#969696"}
                 secureTextEntry={true}

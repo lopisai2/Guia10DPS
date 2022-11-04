@@ -3,7 +3,7 @@ import {StyleSheet,Text,View,TouchableOpacity, TextInput} from 'react-native'
 import { validateEmail } from '../utils/validations';
 import firebase from '../utils/firebase';
 
-export default function RegisterForm()
+export default function RegisterForm(props)
 {
     const {changeForm}=props;
     const [formData,setFormData]=useState(defaultValue());
@@ -11,7 +11,7 @@ export default function RegisterForm()
 
     const register=()=>{
         let errors ={};
-        if(!formData.email||formData.password||formData.repeatPassword)
+        if(!formData.email||!formData.password||!formData.repeatPassword)
         {
             if(!formData.email)
             {
@@ -38,10 +38,12 @@ export default function RegisterForm()
             errors.repeatPassword=true;
         }else
         {
+            alert("Registro Completo");
             firebase
             .auth()
             .createUserWithEmailAndPassword(formData.email, formData.password)
             .catch(()=>{
+                alert("HOLA");
                 setFormError({
                     email:true,
                     password:true,

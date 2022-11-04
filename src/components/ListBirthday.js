@@ -7,7 +7,7 @@ import Birthday from './Birthday';
 import firebase from '../utils/firebase';
 import 'firebase/firestore';
 
-firebase.firestore().settings({experimentalForceLongPolling: true});
+firebase.firestore().settings({});
 const db=firebase.firestore(firebase);
 
 export default function ListBirthday(props)
@@ -31,7 +31,8 @@ export default function ListBirthday(props)
                 data.id=doc.id;
                 itemsArray.push(data);
             })
-            formatData(itemsArray);
+            formData(itemsArray);
+            console.log(itemsArray);
         });
         setReloadData(false);
         },[reloadData]);
@@ -49,17 +50,17 @@ export default function ListBirthday(props)
         const pasatBirthdayTempArray=[];
 
         items.forEach((item)=>{
-            
-            const dateBirth=new Date(item.dateBirth.seconds*1000);
+            //No incluir seconds * 1000
+            //Se quito el currentYear
+            const dateBirth=new Date(item.dateBirth);
             const dateBirthday=moment(dateBirth);
-            const currentYear=moment().get('year');
-            dateBirthday.set({year:currentYear});
-
+            console.log(dateBirthday);
+            const currentYear=moment().get('year');            
             const diffDate=currentDate.diff(dateBirthday,'days');
             const itemTemp=item;
             itemTemp.dateBirth=dateBirthday;
             itemTemp.days=diffDate;
-
+            console.log(item.dateBirth);
             if(diffDate<=0)
             {
                 birthdayTempArray.push(itemTemp);
@@ -80,8 +81,7 @@ export default function ListBirthday(props)
             [
                 {
                     text: 'Cancelar',
-                    style:'cancel'
-                    
+                    style:'cancel'                    
                 },
                 {
                     text:'Eliminar',
